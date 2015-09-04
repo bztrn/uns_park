@@ -1,0 +1,20 @@
+.core_thumbnail
+  .thumbnail.content
+    %a.not_close{:type => "button", 'href' => uns_park.spot_spaces_path(:dmn => s.name)}
+      .glyphicon.glyphicon-cloud
+    .caption
+      %h4
+        = s.name
+      %p
+        count:
+        = s.count || 0
+        %br
+        updated:
+        = s.updated_at.strftime("%B %d, %Y")
+        subscribers:
+        = s.subscribers.count
+      - if user_can_edit
+        %p
+          %a.btn.btn-primary{:href => uns_park.own_space_path(s)}
+            Own
+

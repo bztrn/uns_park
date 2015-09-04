@@ -1,0 +1,59 @@
+<%= space.background_color %>
+
+<%= form_for(space) do |f| %>
+  <% if space.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(space.errors.count, "error") %> prohibited this space from being saved:</h2>
+
+      <ul>
+      <% space.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :domain %><br>
+    <%= f.text_field :domain %>
+  </div>
+  <div class="field">
+    <%= f.label :tagline %><br>
+    <%= f.text_area :tagline %>
+  </div>
+  <div class="field">
+    <%= f.label :background_color %><br>
+    <%= f.color_field :background_color %>
+  </div>
+  <div class="field">
+    <%= f.label :footer %><br>
+    <%= f.check_box :footer %>
+  </div>
+  <div class="field">
+    <%= f.label :subscribe %><br>
+    <%= f.check_box :subscribe %>
+  </div>
+  <div class="field">
+    <%= f.label :fav_icon %><br>
+    <%= f.file_field :fav_icon %>
+  </div>
+  <div class="field">
+    <%= f.label :main_icon %><br>
+    <%= f.file_field :main_icon %>
+  </div>
+ <div class="field">
+    <%= f.label :security %><br>
+    <%= f.select :security, UnsCore::HasPermissions.select_options %>
+  </div>
+
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

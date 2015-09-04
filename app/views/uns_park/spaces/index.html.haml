@@ -1,0 +1,25 @@
+.content
+  .row
+    %h2
+      - if user_can_edit
+        %button.right{:type => "button", 'data-toggle' => "modal", 'data-target' => "#newSpaces"}
+          .glyphicon.glyphicon-plus
+      .title
+        = 'Parked Domains'
+  .row
+    = render :partial => 'thumbnail', :collection => @spaces, :as => :s
+
+- if user_can_edit
+  .content
+    .row
+      %h2
+        .title
+          = 'Unclaimed domains'
+    .row#unclaimed_parking.top_content
+      = render :partial => 'unclaimed_thumbnail', :collection => UnsPark::Space.where(:ad_hoc => true), :as => :s
+
+= content_for(:modal_dlog) do
+  .modal.fade#newSpaces
+    .modal-dialog
+      .modal-content.std_modal
+        = render :partial => 'uns_park/spaces/form', :locals => {:space => current_user.spaces.build}

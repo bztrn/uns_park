@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %meta{:name => 'description', :content => ""}
+    %meta{:name => 'keywords', :content => "coming, soon"}
+    %title
+      = "#{@space.name} Coming Soon"
+    = stylesheet_link_tag 'default_spot.css', media: 'all'
+    = favicon_link_tag(@space.fav_icon.url)
+
+  %body{:style => "background-color: #{@space.background_color.nil? ? '#55575c' : @space.background_color}"}
+    #coming-soon
+
+      %h1
+        - if @space.main_icon.exists?
+          = image_tag @space.main_icon.url(:medium)
+        = @space.name
+      %h1
+        Coming Soon!
+      %p
+        = @space.tagline
+
+      - if @space.subscribe?
+        %p
+          = form_for(@space.subscribers.build) do |f|
+            #subscribe
+              Add your email address here if you want to be notified when this site goes live!
+              = render 'layouts/messages'
+              #subscribe_border
+                = hidden_field_tag :space_id, @space.to_param
+                = f.text_field :email, {:placeholder => "enter your email address..."}
+                = f.submit 'Subscribe'
+                .clear
+      - if @space.footer?
+        = render :partial => 'footer'
+

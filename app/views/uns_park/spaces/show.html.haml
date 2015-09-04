@@ -1,0 +1,40 @@
+%p#notice
+  = notice
+
+%a{:type => "button", 'data-toggle' => "modal", 'data-target' => "#newSpaces" }
+  .glyphicon.glyphicon-pencil
+
+
+= image_tag @space.main_icon.url(:medium)
+= image_tag @space.fav_icon.url(:original)
+
+%br
+%br
+
+= @space.name
+
+- @space.subscribers.each do |b|
+  = b.email
+%p
+  %strong
+    Name:
+  = @space.name
+
+%p
+  %strong
+    Domain:
+  = @space.domain
+
+%p
+  %strong
+    Tagline:
+  = @space.tagline
+
+
+= link_to 'Back', spaces_path
+
+= content_for(:modal_dlog) do
+  .modal.fade#newSpaces
+    .modal-dialog
+      .modal-content.std_modal
+        = render :partial => 'uns_park/spaces/form', :locals => {:space => @space}

@@ -1,0 +1,20 @@
+.core_thumbnail
+  .thumbnail.content{:style => "background-color: #{r.background_color}"}
+    %a.close{:type => "button", 'href' => uns_park.space_path(r), 'data-method' => :delete, 'data-confirm'=>"Are you sure?" }
+      &times;
+    %a.not_close{:type => "button", 'href' => "http://#{r.domain}"}
+      .glyphicon.glyphicon-cloud
+    %a{:href => uns_park.space_path(r)}
+      = image_tag r.main_icon.url(:thumb), {:height => 100}
+    .caption
+      %h4
+        = r.domain || r.name
+      %p
+        count:
+        = r.count || 0
+        %br
+        updated:
+        = r.updated_at.strftime("%B %d, %Y")
+        %br
+        subscribers:
+        = r.subscribers.count
