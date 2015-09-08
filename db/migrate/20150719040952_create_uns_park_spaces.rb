@@ -1,19 +1,21 @@
+include MigrationHelper
 require 'paperclip'
 
 class CreateUnsParkSpaces < ActiveRecord::Migration
   def change
     create_table :uns_park_spaces do |t|
+      t.has_permissions
+      t.goes_in_cases
+
       t.string :name
       t.string :domain
       t.string :background_color, :default => '#ffffff'
-      t.integer :security, :default => 0
 
       t.text :tagline
       t.boolean :footer
       t.boolean :subscribe
       t.boolean :ad_hoc, :default => false
 
-      t.references :user
       t.integer :count
 
       t.attachment :fav_icon
