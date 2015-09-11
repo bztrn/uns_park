@@ -10,3 +10,8 @@
           = r.domain || r.name
         %a.not_close{:type => "button", 'href' => "http://#{r.domain}"}
           .glyphicon.glyphicon-cloud
+
+      - if user_can_edit && r.ad_hoc?
+        %p
+          %a.btn.btn-primary{:href => uns_park.own_space_path(r)}
+            Own

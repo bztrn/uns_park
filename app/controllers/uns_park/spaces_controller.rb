@@ -60,6 +60,7 @@ module UnsPark
         @space = UnsPark::Space.create({
           :name => @domain,
           :domain => @domain,
+          :security => :vip_only,
           :count => 1,
           :ad_hoc => true,
         })
