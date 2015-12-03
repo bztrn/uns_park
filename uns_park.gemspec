@@ -18,6 +18,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.2.3"
   s.add_dependency "validates_email_format_of"
-  s.add_dependency "mysql2"
   s.add_dependency "public_suffix"
 end
