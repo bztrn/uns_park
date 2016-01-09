@@ -52,8 +52,12 @@ module UnsPark
     def spot
       @domain = request.env['SERVER_NAME']
       @domain = params[:dmn] if params.has_key?(:dmn)
-      ps = PublicSuffix.parse(@domain)
-      @domain = ps.domain
+
+      begin
+        ps = PublicSuffix.parse(@domain)
+        @domain = ps.domain
+      rescue
+      end
 
       @space = UnsPark::Space.find_by_domain(@domain)
       if @space.nil?
