@@ -1,3 +1,5 @@
 = UnsPark
+Prerelase! Work in Progress! Serve parking pages for your unused domains yourself.
+
 
 This project rocks and uses MIT-LICENSE.
