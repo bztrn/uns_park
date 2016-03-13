@@ -4,7 +4,7 @@ module UnsPark
   
     def user_bindings
       {
-        :spaces => 'UnsPark::Space'
+        :spaces => {:many => true, :class_name => 'UnsPark::Space'}
       }
     end
 
