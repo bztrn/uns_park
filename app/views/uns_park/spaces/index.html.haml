@@ -18,8 +18,9 @@
     .row#unclaimed_parking.top_content
       = render :partial => 'unclaimed_thumbnail', :collection => @ad_hoc_spaces, :as => :s
 
-= content_for(:modal_dlog) do
-  .modal.fade#newSpaces
-    .modal-dialog
-      .modal-content.std_modal
-        = render :partial => 'uns_park/spaces/form', :locals => {:space => current_user.spaces.build}
+- if user_can_edit
+  = content_for(:modal_dlog) do
+    .modal.fade#newSpaces
+      .modal-dialog
+        .modal-content.std_modal
+          = render :partial => 'uns_park/spaces/form', :locals => {:space => current_user.spaces.build}
