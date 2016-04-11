@@ -1,37 +1,45 @@
-%p#notice
-  = notice
-
-%a{:type => "button", 'data-toggle' => "modal", 'data-target' => "#newSpaces" }
-  .glyphicon.glyphicon-pencil
 
 
-= image_tag @space.main_icon.url(:medium)
-= image_tag @space.fav_icon.url(:original)
+.content
+  .row
+    %h2
+      - if user_can_edit
+        %a.btn.btn-default.btn-sm.create_btn{:type => "button", 'data-toggle' => "modal", 'data-target' => "#newSpaces" }
+          Edit Case...
+      .title
+        = @space.domain
+  .row
+    .third_page
+      = image_tag(@space.main_icon.url(:medium), :width => '100%', :padding => 'auto')
+    
+    .two_third_page
+      .row
+        %h4
+          .title
+            %strong
+              Name:
+            = @space.name
+      .row
+        %h4
+          .title
+            %strong
+              Domain:
+            = @space.domain
+      .row
+        %h4
+          .title
+            %strong
+              Tagline:
+            = @space.tagline
+      .row
+        %h4
+          .title
+            %strong
+              Subscribers:
+            - @space.subscribers.each do |b|
+              = b.email
 
-%br
-%br
 
-= @space.name
-
-- @space.subscribers.each do |b|
-  = b.email
-%p
-  %strong
-    Name:
-  = @space.name
-
-%p
-  %strong
-    Domain:
-  = @space.domain
-
-%p
-  %strong
-    Tagline:
-  = @space.tagline
-
-
-= link_to 'Back', spaces_path
 
 = content_for(:modal_dlog) do
   .modal.fade#newSpaces

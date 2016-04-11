@@ -1,8 +1,10 @@
 .core_thumbnail
   .thumbnail.content{:style => "background-color: #{s.background_color}"}
-    %a.not_close{:type => "button", 'href' => "http://#{s.domain}"}
+    %a.btn.btn-xs.btn-default.not_close{:type => "button", 'href' => "http://#{s.domain}"}
       .glyphicon.glyphicon-cloud
-    = image_tag s.main_icon.url(:thumb), {:height => 100}
+    
+    .logo
+      = link_to(image_tag(s.main_icon.url(:thumb), {:height => 100}), uns_park.space_path(s))
     .caption
       %h4
         = s.domain || s.name
@@ -15,10 +17,9 @@
         %br
         subscribers:
         = s.subscribers.count
-      - if user_can_edit
-        %a{:type => "button", 'data-confirm' => "are you sure", 'href' => uns_park.space_path(s), 'data-method' => :delete }
+    - if user_can_edit
+      .action
+        %a.btn.btn-xs.btn-default{:type => "button", 'data-confirm' => "are you sure", 'href' => uns_park.space_path(s), 'data-method' => :delete }
           .glyphicon.glyphicon-trash
-        %a{:type => "button", 'href' => uns_park.space_path(s) }
-          .glyphicon.glyphicon-pencil
-
         != case_select(s)
+        != security_select(s)
